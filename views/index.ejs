@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Latest Commits</title>
+  </head>
+  <body>
+    <h1>GitHub Latest Commits</h1>
+
+    <% if (!user) { %>
+    <a href="/auth/github"><button id="butt">Authorize with GitHub</button></a>
+    <% } else { %>
+    <h2>Welcome, <%= user.login %>!</h2>
+
+    <% if (repositories && repositories.length > 0) { %>
+    <h3>Your Repositories:</h3>
+    <ul>
+      <% repositories.forEach((repo) => { %>
+      <li><%= repo.name %></li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>No repositories found.</p>
+    <% } %> <% } %>
+  </body>
+</html>
