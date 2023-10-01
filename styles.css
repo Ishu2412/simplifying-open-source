@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #87CEEB;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.game-container {
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 32px;
+}
+
+.bubble {
+    width: 100px;
+    height: 100px;
+    background-color: #F6CECE;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.bubble:hover {
+    transform: scale(1.1);
+}
