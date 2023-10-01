@@ -79,10 +79,36 @@ app.get(
         })
           .then((response) => response.json())
           .then((repositories) => {
-            // Render the data in the 'index' view
-            console.log(userData);
-            console.log(repositories);
-            res.render("index", { user: userData, repositories });
+            // // Render the data in the 'index' view
+            // console.log(userData);
+            // console.log(repositories);
+            // res.render("index", { user: userData, repositories });
+            // Fetch the latest commits for each repository
+            const promises = repositories.map((repo) => {
+              return fetch(`https://api.github.com/repos/${repo.full_name}/commits`, {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              })
+                .then((response) => response.json())
+                .then((commits) => {
+                  repo.commits = commits; // Add the commits to the repository data
+                });
+            });
+
+            // Wait for all promises to resolve
+            Promise.all(promises)
+              .then(() => {
+                // Render the data in the 'index' view
+                // console.log(userData);
+                // console.log(repositories);
+                
+                res.render("index", { user: userData, repositories });
+              })
+              .catch((error) => {
+                console.error("Error fetching commits:", error);
+                res.status(500).send("Internal server error");
+              });
           })
           .catch((error) => {
             console.error("Error fetching repositories:", error);

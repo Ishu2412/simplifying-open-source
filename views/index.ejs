@@ -16,9 +16,18 @@
     <% if (repositories && repositories.length > 0) { %>
     <h3>Your Repositories:</h3>
     <ul>
-      <% repositories.forEach((repo) => { %>
-      <li><%= repo.name %></li>
-      <% }); %>
+      <%for (const repo of repositories) { %>
+        <h2>Commits for <%= repo.full_name %>:</h2>
+        <% let i = 1 %>
+        <%for (const commit of repo.commits) {%>
+          <li>SHA: <%= commit.sha %></li>
+          <li>Author: <%= commit.commit.author.name %></li>
+          <li>Message: <%= commit.commit.message %></li>
+          <% i++ %>
+          <% if(i == 5) %>
+          <% break %>
+        <%}%>
+      <%}%>
     </ul>
     <% } else { %>
     <p>No repositories found.</p>
