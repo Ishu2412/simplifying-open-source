@@ -12,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Configure session middleware
 app.use(
   session({
-    secret: "77633b33f5ba24d85c8e0b53275873f8deead17b",
+    secret: "c367630b0287bedd705905ef89c809e5d246ce0d",
     resave: false,
     saveUninitialized: true,
   })
@@ -24,8 +24,8 @@ app.use(passport.session());
 passport.use(
   new GitHubStrategy(
     {
-      clientID: "Iv1.b7d448bd3fc4d84e", // Replace with your GitHub OAuth App's Client ID
-      clientSecret: "77633b33f5ba24d85c8e0b53275873f8deead17b", // Replace with your GitHub OAuth App's Client Secret
+      clientID: "Iv1.3e01be11337d15ba", // Replace with your GitHub OAuth App's Client ID
+      clientSecret: "c367630b0287bedd705905ef89c809e5d246ce0d", // Replace with your GitHub OAuth App's Client Secret
       callbackURL: "http://localhost:3000/auth/github/callback",
     },
     (accessToken, refreshToken, profile, done) => {
