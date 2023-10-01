@@ -20,6 +20,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static(__dirname + '/views'));  //to add css files
+
 // GitHub OAuth 2.0 strategy configuration
 passport.use(
   new GitHubStrategy(
@@ -42,6 +44,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
 
 // Set EJS as the view engine
 app.set("view engine", "ejs");
